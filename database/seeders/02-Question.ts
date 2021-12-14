@@ -33,7 +33,7 @@ export default class QuestionSeeder extends BaseSeeder {
       },
       {
         userId,
-        text: 'What was the model number of the Red Dress Cylon in the Battlestar Galactica remake',
+        text: 'What was the model number of the Red Dress Cylon in the Battlestar Galactica remake?',
         type: 2,
         answers: [
           { text: 'Seven of Nine', points: 0, sort: 1 },
@@ -45,7 +45,7 @@ export default class QuestionSeeder extends BaseSeeder {
       },
       {
         userId,
-        text: 'In the Fallout Universe what year did the bombs drop',
+        text: 'In the Fallout Universe what year did the bombs drop?',
         type: 2,
         answers: [
           { text: '1945', points: 0, sort: 1 },
@@ -57,15 +57,15 @@ export default class QuestionSeeder extends BaseSeeder {
       },
       {
         userId,
-        text: 'What year did the Suez Canal open',
+        text: 'What year did the Suez Canal open?',
         type: 2,
         answers: [
           { text: '1860', points: 0, sort: 1 },
           { text: '1869', points: 1, sort: 2 },
         ],
       },
-      { userId, text: 'What is the capital of Thailand', answers: [{ text: 'Bangkok', points: 1 }] },
-      { userId, text: 'What is the most abundant metal in the human body', answers: [{ text: 'Calcium', points: 1 }] },
+      { userId, text: 'What is the capital of Thailand?', answers: [{ text: 'Bangkok', points: 1 }] },
+      { userId, text: 'What is the most abundant metal in the human body?', answers: [{ text: 'Calcium', points: 1 }] },
       {
         userId,
         text: 'One point for every actor who played a Doctor Who - canonical BBC TV series only',
@@ -88,7 +88,7 @@ export default class QuestionSeeder extends BaseSeeder {
       },
       {
         userId,
-        text: 'Coffee chain Starbucks takes its name from a character in which classic novel',
+        text: 'Coffee chain Starbucks takes its name from a character in which classic novel?',
         answers: [{ text: 'Moby Dick' }],
         tags: ['0cc875a9-7338-495a-94b1-5aa28bf2bbd9'],
       },
@@ -109,7 +109,7 @@ export default class QuestionSeeder extends BaseSeeder {
       },
       {
         userId,
-        text: 'Also known as the "Demon Barber of Fleet Street" this English musical character\'s victims who were then baked into pies.',
+        text: 'Also known as the "Demon Barber of Fleet Street" this English musical character\'s victims were then baked into pies.',
         type: 1,
         answers: [{ text: 'Sweeney Todd' }],
         tags: ['f14334ea-7e8f-4dd6-b3ba-e4970f4c16bc'],
