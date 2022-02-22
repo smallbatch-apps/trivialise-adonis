@@ -4,7 +4,7 @@ export default class QuestionTypes extends BaseSchema {
   protected tableName = 'question_types';
 
   public async up() {
-    this.schema.createTable(this.tableName, table => {
+    this.schema.createTable(this.tableName, (table) => {
       table.increments('id');
       table.string('name').notNullable();
     });

@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import Hash from '@ioc:Adonis/Core/Hash';
 import { BaseModel, column, beforeCreate, beforeSave, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm';
 
-import { Question } from 'App/Models';
+import { Question, Series } from 'App/Models';
 
 export default class User extends BaseModel {
   public static selfAssignPrimaryKey = true;
@@ -29,6 +29,9 @@ export default class User extends BaseModel {
 
   @hasMany(() => Question)
   public questions: HasMany<typeof Question>;
+
+  @hasMany(() => Series)
+  public series: HasMany<typeof Series>;
 
   @beforeCreate()
   public static assignUuid(user: User) {

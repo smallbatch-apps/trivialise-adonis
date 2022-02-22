@@ -20,3 +20,16 @@ export enum DocumentStatuses {
   New = 1,
   Moved,
 }
+
+export enum EventStatuses {
+  Draft = 1,
+  Published,
+  Completed,
+}
+
+export enum LocationTypes {
+  PlusCode = 1,
+  Coordinates,
+  MapsLink,
+  Address,
+}

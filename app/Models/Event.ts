@@ -1,12 +1,21 @@
 import { DateTime } from 'luxon';
 import { column } from '@ioc:Adonis/Lucid/Orm';
 
-import { UuidModel } from 'App/Models';
+import { UuidModel, EventStatuses } from 'App/Models';
 
 export default class Event extends UuidModel {
-  @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime;
+  @column({ serializeAs: null })
+  public seriesId: string;
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime;
+  @column()
+  public description: string;
+
+  @column.dateTime({ autoUpdate: false, autoCreate: false })
+  public startTime: DateTime;
+
+  @column.dateTime({ autoUpdate: false, autoCreate: false })
+  public endTime: DateTime;
+
+  @column()
+  public status: EventStatuses;
 }

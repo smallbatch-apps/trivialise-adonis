@@ -12,7 +12,7 @@
 |
 */
 
-import Env from '@ioc:Adonis/Core/Env'
+import Env from '@ioc:Adonis/Core/Env';
 
 export default Env.rules({
   HOST: Env.schema.string({ format: 'host' }),
@@ -25,8 +25,9 @@ export default Env.rules({
   PG_USER: Env.schema.string(),
   PG_PASSWORD: Env.schema.string.optional(),
   PG_DB_NAME: Env.schema.string(),
+  MATT_PASSWORD: Env.schema.string(),
   DO_SPACES_KEY: Env.schema.string(),
   DO_SPACES_SECRET: Env.schema.string(),
   DO_SPACES_ENDPOINT: Env.schema.string(),
   DO_SPACES_NAME: Env.schema.string(),
-})
+});

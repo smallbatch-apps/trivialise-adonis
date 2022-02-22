@@ -1,13 +1,19 @@
-import { DateTime } from 'luxon';
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm';
+import { column, hasMany, HasMany, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm';
+import { UuidModel, Event, User } from 'App/Models';
 
-export default class Series extends BaseModel {
-  @column({ isPrimary: true })
-  public id: number;
+export default class Series extends UuidModel {
+  @column()
+  public name: string;
 
-  @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime;
+  @column()
+  public description: string;
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime;
+  @column()
+  public promoImage: string;
+
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>;
+
+  @hasMany(() => Event)
+  public events: HasMany<typeof Event>;
 }

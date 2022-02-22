@@ -22,7 +22,7 @@ import Route from '@ioc:Adonis/Core/Route';
 
 Route.group(() => {
   Route.get('me', 'AuthController.me');
-  Route.resource('users', 'UsersController').except(['store', 'destroy']);
+  Route.resource('users', 'UsersController').except(['store', 'destroy', 'index']);
   Route.patch('questions/:id/answers', 'AnswersController.reorderAnswers');
   Route.resource('questions', 'QuestionsController').only(['index', 'store', 'show', 'update', 'destroy']);
   Route.resource('answers', 'AnswersController').only(['store', 'update', 'destroy']);
@@ -31,5 +31,6 @@ Route.group(() => {
 }).middleware('auth:api');
 
 Route.post('users', 'UsersController.store');
+Route.get('users', 'UsersController.index');
 Route.post('login', 'AuthController.login');
 Route.post('logout', 'AuthController.logout');
