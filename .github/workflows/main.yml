@@ -55,10 +55,10 @@ jobs:
         run: npm run build
       
       - name: Run migration
-        run: node ace migration:run
+        run: node build/ace migration:run
         
       - name: Run seeder
-        run: node ace db:seed
+        run: node build/ace db:seed
         
       - name: Run test
         run: npm test
