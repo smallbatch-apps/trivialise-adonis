@@ -27,10 +27,7 @@ env:
   APP_KEY: _9E_D2KJtq5sEn64BvznsPLAMKi2f6jZ
   DB_CONNECTION: pg
   # used by postgres container
-  POSTGRES_HOST: localhost
-  POSTGRES_USER: lucid
-  POSTGRES_PASSWORD: secret
-  POSTGRES_DB: lucid
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -62,7 +59,11 @@ jobs:
         image: postgres
         ports:
           - 5432:5432
-          
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_USER: lucid
+          POSTGRES_PASSWORD: secret
+          POSTGRES_DB: lucid
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
