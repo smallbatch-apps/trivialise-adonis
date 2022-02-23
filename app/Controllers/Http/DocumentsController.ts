@@ -4,6 +4,7 @@ import fs from 'fs';
 import AWS from 'aws-sdk';
 import Env from '@ioc:Adonis/Core/Env';
 import { DocumentStatuses, Question, Document } from 'App/Models';
+import StorageNotFoundException from 'App/Exceptions/StorageNotFoundException';
 
 export default class DocumentsController {
   public async store({ request, bouncer }: HttpContextContract) {
@@ -28,19 +29,22 @@ export default class DocumentsController {
       tempfile: upload.tmpPath,
     });
 
-    const s3 = new AWS.S3({
-      endpoint: new AWS.Endpoint(Env.get('DO_SPACES_ENDPOINT')),
-      accessKeyId: Env.get('DO_SPACES_KEY'),
-      secretAccessKey: Env.get('DO_SPACES_SECRET'),
-    });
+    const endpoint = Env.get('DO_SPACES_ENDPOINT', '');
+    const accessKeyId = Env.get('DO_SPACES_KEY', '');
+    const secretAccessKey = Env.get('DO_SPACES_SECRET', '');
+    const storageName = Env.get('DO_SPACES_NAME', '');
+
+    if (!endpoint) throw new StorageNotFoundException('No document storage found', 500);
+
+    const s3 = new AWS.S3({ endpoint, accessKeyId, secretAccessKey });
 
     const filePath = `${request.input('type')}/${document.id}.${upload.extname}`;
-    const location = `https://${Env.get('DO_SPACES_NAME')}.${Env.get('DO_SPACES_ENDPOINT')}/${filePath}`;
+    const location = `https://${storageName}.${endpoint}/${filePath}`;
     try {
       await s3
         .putObject({
           Key: filePath,
-          Bucket: Env.get('DO_SPACES_NAME'),
+          Bucket: Env.get('DO_SPACES_NAME', ''),
           Body: fs.readFileSync(upload.tmpPath!),
           ACL: 'public-read',
           ContentType: upload.type,

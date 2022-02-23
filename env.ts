@@ -26,8 +26,8 @@ export default Env.rules({
   PG_PASSWORD: Env.schema.string.optional(),
   PG_DB_NAME: Env.schema.string(),
   MATT_PASSWORD: Env.schema.string(),
-  DO_SPACES_KEY: Env.schema.string(),
-  DO_SPACES_SECRET: Env.schema.string(),
-  DO_SPACES_ENDPOINT: Env.schema.string(),
-  DO_SPACES_NAME: Env.schema.string(),
+  DO_SPACES_KEY: Env.schema.string.optional(),
+  DO_SPACES_SECRET: Env.schema.string.optional(),
+  DO_SPACES_ENDPOINT: Env.schema.string.optional(),
+  DO_SPACES_NAME: Env.schema.string.optional(),
 });
