@@ -14,7 +14,6 @@ on:
   workflow_dispatch:
 
 env:
-  # used by adonis
   PG_HOST: localhost
   PG_PORT: 5432
   PG_USER: lucid
@@ -26,31 +25,28 @@ env:
   NODE_ENV: development
   APP_KEY: _9E_D2KJtq5sEn64BvznsPLAMKi2f6jZ
   DB_CONNECTION: pg
-  # used by postgres container
 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.5.1
         with: 
           node-version: "14.x"
-          
-      - name: Install dependencies
-        run: npm install
         
-      - name: Build application
-        run: npm run build
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+          
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
       
       - name: Run migration
         run: node build/ace migration:run
@@ -58,8 +54,9 @@ jobs:
       - name: Run seeder
         run: node build/ace db:seed
         
-      - name: Run test
-        run: npm test
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: test
   
       - name: Lint codebase
         uses: github/super-linter/slim@v4
@@ -69,9 +66,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     services:
-      # Label used to access the service container
       postgres:
-        # Docker Hub image
         image: postgres
         ports:
           - 5432:5432
@@ -80,7 +75,6 @@ jobs:
           POSTGRES_USER: lucid
           POSTGRES_PASSWORD: secret
           POSTGRES_DB: lucid
-        # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
