@@ -48,8 +48,6 @@ jobs:
           
       - name: Install dependencies
         run: npm install
-      - name: Install missing peer dependency
-        run: npm install --save reflect-metadata
         
       - name: Build application
         run: npm run build
