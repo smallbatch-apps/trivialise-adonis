@@ -5,7 +5,7 @@
  * file.
  */
 
-import { User, Question } from 'App/Models';
+import { User, Question, Series } from 'App/Models';
 
 import Bouncer from '@ioc:Adonis/Addons/Bouncer';
 
@@ -33,6 +33,8 @@ import Bouncer from '@ioc:Adonis/Addons/Bouncer';
 */
 export const { actions } = Bouncer.define('editQuestion', (user: User, question: Question) => {
   return question.userId === user.id;
+}).define('ownsSeries', (user: User, series: Series) => {
+  return series.userId === user.id;
 });
 
 /*

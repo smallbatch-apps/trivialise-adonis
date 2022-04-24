@@ -2,6 +2,9 @@ import { column, hasMany, HasMany, belongsTo, BelongsTo } from '@ioc:Adonis/Luci
 import { UuidModel, Event, User } from 'App/Models';
 
 export default class Series extends UuidModel {
+  @column({ serializeAs: null })
+  public userId: string;
+
   @column()
   public name: string;
 
