@@ -4,7 +4,7 @@ import { column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm';
 import { UuidModel, EventStatuses, Series } from 'App/Models';
 
 export default class Event extends UuidModel {
-  @column({ serializeAs: null })
+  @column()
   public seriesId: string;
 
   @column()

@@ -1,11 +1,11 @@
 import { DateTime } from 'luxon';
 import { column, belongsTo, BelongsTo, hasMany, HasMany, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm';
 
-import { Answer, Document, User, Tag, UuidModel } from 'App/Models';
+import { Answer, Document, Company, Tag, UuidModel } from 'App/Models';
 
 export default class Question extends UuidModel {
-  @column({ serializeAs: null })
-  public userId: string;
+  @column()
+  public companyId: string;
 
   @column()
   public text: string;
@@ -19,8 +19,8 @@ export default class Question extends UuidModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 
-  @belongsTo(() => User)
-  public user: BelongsTo<typeof User>;
+  @belongsTo(() => Company)
+  public owner: BelongsTo<typeof Company>;
 
   @hasMany(() => Answer)
   public answers: HasMany<typeof Answer>;

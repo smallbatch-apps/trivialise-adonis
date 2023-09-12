@@ -21,11 +21,11 @@ export default class DocumentsController {
 
     const question = await Question.findOrFail(request.input('questionId'));
 
-    await bouncer.authorize('editQuestion', question);
+    await bouncer.authorize('ownsQuestion', question);
 
     const document = await question.related('documents').create({
       title: request.input('title'),
-      filename: upload.clientName,
+      location: upload.clientName,
       tempfile: upload.tmpPath,
     });
 

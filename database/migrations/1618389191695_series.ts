@@ -6,7 +6,7 @@ export default class Series extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.uuid('id').primary();
-      table.uuid('user_id').references('users.id').onDelete('CASCADE');
+      table.uuid('company_id').references('companies.id').onDelete('CASCADE');
       table.string('name').notNullable();
       table.string('description').nullable();
       table.string('promo_image').nullable();

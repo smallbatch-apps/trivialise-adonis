@@ -5,6 +5,12 @@ import { Series, Event } from 'App/Models';
 import CreateEventValidator from 'App/Validators/CreateEventValidator';
 
 export default class EventsController {
+  public async index({ auth }: HttpContextContract) {
+    return await Event.query().whereHas('series', seriesQuery => {
+      seriesQuery.where('companyId', auth.user?.companyId!);
+    });
+  }
+
   public async store({ bouncer, request }: HttpContextContract) {
     await request.validate(CreateEventValidator);
 

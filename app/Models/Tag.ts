@@ -3,7 +3,7 @@ import { UuidModel, Question } from 'App/Models';
 
 export default class Tag extends UuidModel {
   @column({ serializeAs: null })
-  public ownerId: string | null;
+  public companyId: string | null;
 
   @column()
   public text: string;
@@ -14,10 +14,10 @@ export default class Tag extends UuidModel {
   @column()
   public colour: string;
 
-  @column({ serializeAs: 'iconColour' })
+  @column()
   public iconColour: string;
 
-  @column({ serializeAs: 'iconSecondaryColour' })
+  @column()
   public iconSecondaryColour: string;
 
   @manyToMany(() => Question)

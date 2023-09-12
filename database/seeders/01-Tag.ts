@@ -30,6 +30,7 @@ export default class TagSeeder extends BaseSeeder {
       { id: Tags.Difficult, text: 'Difficult', colour: '', iconColour: '#F9A8D4', iconSecondaryColour: '#EC4899', icon: 'brain' },
       { id: Tags.Television, text: 'Television', colour: '', iconColour: '#713F12', iconSecondaryColour: '#EC4899', icon: 'tv-retro' },
       { id: Tags.History, text: 'History', colour: '', iconColour: '#A8A29E', iconSecondaryColour: '#D6D3D1', icon: 'landmark' },
+      { id: Tags.Local, text: 'Local', colour: '', iconColour: '#A8A29E', iconSecondaryColour: '#D6D3D1', icon: 'location-dot' },
     ];
 
     await Tag.createMany(rawTags);

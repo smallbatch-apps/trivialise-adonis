@@ -13,7 +13,7 @@ export default class AnswersController {
     });
     const question = await Question.findOrFail(request.input('questionId'));
 
-    await bouncer.authorize('editQuestion', question);
+    await bouncer.authorize('ownsQuestion', question);
 
     return await question.related('answers').create(request.only(['text', 'sort', 'points']));
   }
@@ -21,7 +21,7 @@ export default class AnswersController {
   public async update({ params, request, bouncer }: HttpContextContract) {
     const answer = await Answer.query().where('id', params.id).preload('question').firstOrFail();
 
-    await bouncer.authorize('editQuestion', answer.question);
+    await bouncer.authorize('ownsQuestion', answer.question);
 
     answer.merge(request.only(['text', 'points', 'sort']));
     await answer.save();
@@ -29,7 +29,7 @@ export default class AnswersController {
 
   public async reorderAnswers({ params, request, bouncer }: HttpContextContract) {
     const question = await Question.findOrFail(params.id);
-    await bouncer.authorize('editQuestion', question);
+    await bouncer.authorize('ownsQuestion', question);
 
     const answerIds = request.input('answers');
     const payload = answerIds.map((id, sort) => ({ id, sort }));
@@ -38,7 +38,7 @@ export default class AnswersController {
 
   public async destroy({ params, bouncer }: HttpContextContract) {
     const answer = await Answer.query().where('id', params.id).preload('question').firstOrFail();
-    await bouncer.authorize('editQuestion', answer.question);
+    await bouncer.authorize('ownsQuestion', answer.question);
     await answer.delete();
   }
 }

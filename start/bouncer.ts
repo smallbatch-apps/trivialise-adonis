@@ -31,10 +31,10 @@ import Bouncer from '@ioc:Adonis/Addons/Bouncer';
 | NOTE: Always export the "actions" const from this file
 |****************************************************************
 */
-export const { actions } = Bouncer.define('editQuestion', (user: User, question: Question) => {
-  return question.userId === user.id;
+export const { actions } = Bouncer.define('ownsQuestion', (user: User, question: Question) => {
+  return question.companyId === user.companyId;
 }).define('ownsSeries', (user: User, series: Series) => {
-  return series.userId === user.id;
+  return series.companyId === user.companyId;
 });
 
 /*

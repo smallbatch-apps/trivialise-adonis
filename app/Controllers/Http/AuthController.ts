@@ -7,10 +7,12 @@ export default class AuthController {
 
     const token = await auth.use('api').attempt(email, password);
     const user = token.user;
+    const fucker = 'thisthing';
 
     return {
       token: token.token,
       user,
+      fucker,
     };
   }
 

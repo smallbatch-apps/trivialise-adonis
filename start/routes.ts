@@ -29,6 +29,8 @@ Route.group(() => {
   Route.resource('answers', 'AnswersController').only(['store', 'update', 'destroy']);
   Route.resource('tags', 'TagsController').only(['index']);
   Route.resource('documents', 'DocumentsController').only(['store', 'destroy']);
+  Route.resource('series', 'SeriesController').only(['index', 'store', 'update', 'destroy']);
+  Route.resource('events', 'EventsController').apiOnly();
 }).middleware('auth:api');
 
 Route.post('users', 'UsersController.store');

@@ -1,9 +1,9 @@
 import { column, hasMany, HasMany, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm';
-import { UuidModel, Event, User } from 'App/Models';
+import { UuidModel, Event, Company } from 'App/Models';
 
 export default class Series extends UuidModel {
   @column({ serializeAs: null })
-  public userId: string;
+  public companyId: string;
 
   @column()
   public name: string;
@@ -14,8 +14,8 @@ export default class Series extends UuidModel {
   @column()
   public promoImage: string;
 
-  @belongsTo(() => User)
-  public user: BelongsTo<typeof User>;
+  @belongsTo(() => Company)
+  public owner: BelongsTo<typeof Company>;
 
   @hasMany(() => Event)
   public events: HasMany<typeof Event>;

@@ -7,7 +7,7 @@ export default class Questions extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.uuid('id').primary();
-      table.uuid('user_id').references('users.id').onDelete('CASCADE');
+      table.uuid('company_id').references('companies.id').onDelete('CASCADE');
       table.text('text').notNullable();
       table.integer('type').notNullable().defaultTo(QuestionTypes.Simple);
       table.timestamps(true);

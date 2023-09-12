@@ -1,12 +1,17 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
-import { User, Series } from 'App/Models';
+import { Series } from 'App/Models';
 import CreateSeriesValidator from 'App/Validators/CreateSeriesValidator';
 
 export default class SeriesController {
+  public async index({ auth }: HttpContextContract) {
+    return await Series.query().where('companyId', auth.user?.companyId!);
+  }
+
   public async store({ auth, request }: HttpContextContract) {
     await request.validate(CreateSeriesValidator);
-    return auth.user?.related('series').create(request.only(['name', 'description']));
+    await auth.user?.load('owner');
+    return auth.user?.owner.related('series').create(request.only(['name', 'description']));
   }
 
   public async update({ params, request, bouncer }: HttpContextContract) {
@@ -16,11 +21,5 @@ export default class SeriesController {
     await series.save();
   }
 
-  public async index({ auth }: HttpContextContract) {
-    const user = await User.query()
-      .where('id', auth.user!.id)
-      .preload('series', (query) => query.preload('events'))
-      .firstOrFail();
-    return user.series;
-  }
+  public async destroy({}: HttpContextContract) {}
 }

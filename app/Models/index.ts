@@ -1,5 +1,6 @@
 export { default as UuidModel } from './UuidModel';
 export { default as Answer } from './Answer';
+export { default as Company } from './Company';
 export { default as Document } from './Document';
 export { default as Event } from './Event';
 export { default as Question } from './Question';
@@ -7,7 +8,6 @@ export { default as QuestionType } from './QuestionType';
 export { default as Series } from './Series';
 export { default as User } from './User';
 export { default as Tag } from './Tag';
-export { default as CamelCaseNamingStrategy } from './CameCaseNamingStrategy';
 
 export const enum QuestionTypes {
   Simple = 1,
@@ -47,4 +47,5 @@ export enum Tags {
   Difficult = 'ce3bab2f-fec9-4b43-9fc1-53fcd0041f21',
   Television = '9a46261d-db91-4c2e-8f65-3aefff8aeef1',
   History = '786f4936-8378-4bcd-a18f-8a78b9637dfb',
+  Local = 'ccb5a554-8f9d-4aa8-ad11-8bc69f19ce5f',
 }
